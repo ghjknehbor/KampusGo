@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             KampusGoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Troy",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
