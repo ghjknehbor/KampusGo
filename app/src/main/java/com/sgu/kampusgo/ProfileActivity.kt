@@ -21,11 +21,13 @@ class ProfileActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         Log.d("KampusGo", "onCreate")
         val activity = this
-        val name = intent.getStringExtra("name") ?: "Guest"
+        val name = intent.getStringExtra("name")?.takeIf { it.isNotBlank() } ?: "Guest"
+        val npm = intent.getStringExtra("npm")?.takeIf { it.isNotBlank() } ?: "-"
         setContent{
             KampusGoTheme() {
                 Column(modifier = Modifier.padding(24.dp)) {
                     Text(text = "Hello, $name")
+                    Text(text = npm )
                     Button(onClick = {
                         val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:08123456789"))
                         try {
@@ -35,6 +37,16 @@ class ProfileActivity: ComponentActivity() {
                         }
                     }) {
                         Text("Call campus")
+                    }
+                    Button(onClick= {
+                        val dial = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.sgu.ac.id"))
+                        try {
+                            activity.startActivity(dial)
+                        } catch (e: ActivityNotFoundException) {
+                            Toast.makeText(activity, "how", Toast.LENGTH_SHORT).show()
+                        }
+                    }) {
+                        Text("Search online for tips")
                     }
                 }
             }

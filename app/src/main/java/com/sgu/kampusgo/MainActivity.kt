@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KampusGoTheme {
                 var name by remember { mutableStateOf("") }
+                var npm by remember { mutableStateOf("") }
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(
                         modifier = Modifier
@@ -42,9 +43,15 @@ class MainActivity : ComponentActivity() {
                             onValueChange = { name = it},
                             label = { Text("Your name") }
                         )
+                        OutlinedTextField(
+                            value = npm,
+                            onValueChange = { npm = it},
+                            label = { Text("Your NPM") }
+                        )
                         Button(onClick = {
                             val intent = Intent(activity, ProfileActivity::class.java)
                             intent.putExtra("name", name)
+                            intent.putExtra("npm", npm)
                             activity.startActivity(intent)
                         }) {
                             Text("Open profile")
