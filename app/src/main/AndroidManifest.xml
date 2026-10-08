@@ -27,7 +27,11 @@
             android:name=".ProfileActivity"
             android:exported="false">
         </activity>
-
+        <activity
+            android:name=".ProfileXmlActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
     </application>
 
 </manifest>
